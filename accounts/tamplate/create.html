@@ -1,0 +1,36 @@
+<!--create.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Suivi de Projet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Créer un Suivi de Projet</h1>
+<form method="post" enctype="multipart/form-data">
+    {{% csrf_token %}}
+    <label for="progress_description">Description de l'Évolution:</label>
+    <textarea id="progress_description" name="progress_description" required></textarea>
+
+    <label for="remaining_tasks">Tâches Restantes:</label>
+    <textarea id="remaining_tasks" name="remaining_tasks" required></textarea>
+
+    <label for="start_date">Date de Début:</label>
+    <input type="date" id="start_date" name="start_date" required>
+
+    <label for="end_date">Date de Fin:</label>
+    <input type="date" id="end_date" name="end_date" required>
+
+    <label for="images">Images:</label>
+    <input type="file" id="images" name="images">
+
+    <label for="expenses">Dépenses:</label>
+    <input type="number" id="expenses" name="expenses" step="0.01" required>
+
+    <button type="submit">Enregistrer</button>
+</form>
+   <a href="{% url 'project_progress_list' %}">Retour à la liste</a>
+</body>
+</html>

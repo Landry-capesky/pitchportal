@@ -1,0 +1,19 @@
+<!-- project_detail.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Projet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>{{ project.name }}</h1>
+    <p>Description: {{ project.description }}</p>
+    <a href="{% url 'project_update' project.id %}">Modifier</a>
+    <form action="{% url 'project_delete' project.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+    </form>
+</body>
+</html>

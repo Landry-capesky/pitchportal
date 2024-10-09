@@ -1,0 +1,24 @@
+<!-- propose_funding.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposer un Financement</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Proposer un Financement pour: {{ project.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="funder_name">Nom du Financeur:</label>
+        <input type="text" id="funder_name" name="funder_name" required>
+        
+        <label for="amount">Montant du Financement:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+        
+        <button type="submit">Soumettre</button>
+    </form>
+    <a href="{% url 'project_list' %}">Retour à la liste des projets</a>
+</body>
+</html>

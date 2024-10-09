@@ -1,0 +1,19 @@
+<!-- projectowner_detail.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Propriétaire de Projet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>{{ project_owner_detail.name }}</h1>
+    <p>Détails: {{ project_owner_detail.detail }}</p>
+    <a href="{% url 'projectowner_update' project_owner_detail.id %}">Modifier</a>
+    <form action="{% url 'projectowner_delete' project_owner_detail.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Supprimer</button>
+    </form>
+</body>
+</html>

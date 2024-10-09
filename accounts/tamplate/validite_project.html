@@ -1,0 +1,20 @@
+<!-- activate_project.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activer le Projet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Activer le Projet: {{ project.name }}</h1>
+    <p>Description: {{ project.description }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button name="action" value="approve" type="submit">Approuver</button>
+        <button name="action" value="reject" type="submit">Rejeter</button>
+    </form>
+    <a href="{% url 'analyst_list' %}">Retour à la liste</a>
+</body>
+</html>

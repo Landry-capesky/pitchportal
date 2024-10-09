@@ -1,0 +1,24 @@
+<!-- project_list.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Projets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Liste des Projets</h1>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Rechercher un projet" value="{{ request.GET.q }}">
+        <button type="submit">Rechercher</button>
+    </form>
+    <ul>
+        {{% for project in projects %}}
+        <li><a href="{% url 'project_detail' project.id %}">{{ project.name }}</a></li>
+        {{% empty %}}
+        <li>Aucun projet trouvé.</li>
+        {{% endfor %}}
+    </ul>
+</body>
+</html>

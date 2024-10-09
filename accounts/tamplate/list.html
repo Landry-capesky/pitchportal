@@ -1,0 +1,23 @@
+<!--Suivi des Projets -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des Projets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Suivi des Projets</h1>
+<ul>
+    {{% for progress in progresses %}}
+    <li>
+        {{ progress.project.name }}: {{ progress.progress_description }}
+        <a href="{% url 'update_project_progress' progress.id %}">Modifier</a>
+        <a href="{% url 'delete_project_progress' progress.id %}">Supprimer</a>
+    </li>
+    {{% endfor %}}
+</ul>
+<a href="{% url 'project_list' %}">Retour aux Projets</a>
+</body>
+</html>

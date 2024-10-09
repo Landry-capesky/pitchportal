@@ -1,0 +1,24 @@
+<!-- projectowner_list.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Propriétaires de Projets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Liste des Propriétaires de Projets</h1>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Rechercher un propriétaire" value="{{ request.GET.q }}">
+        <button type="submit">Rechercher</button>
+    </form>
+    <ul>
+        {{% for owner in projectowners %}}
+        <li><a href="{% url 'projectowner_detail' owner.id %}">{{ owner.name }}</a></li>
+        {{% empty %}}
+        <li>Aucun propriétaire trouvé.</li>
+        {{% endfor %}}
+    </ul>
+</body>
+</html>

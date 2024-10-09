@@ -1,0 +1,19 @@
+<!-- toggle_user_status.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloquer/Débloquer Utilisateur</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>{{% if user.is_active %}}Bloquer{{% else %}}Débloquer{{% endif %}} Utilisateur: {{ user.username }}</h1>
+    <form method="post">
+        {{% csrf_token %}}
+        <p>Voulez-vous vraiment {{% if user.is_active %}}bloquer{{% else %}}débloquer{{% endif %}} cet utilisateur ?</p>
+        <button type="submit">{{% if user.is_active %}}Bloquer{{% else %}}Débloquer{{% endif %}}</button>
+    </form>
+    <a href="{% url 'admin_user_list' %}">Retour à la liste des utilisateurs</a>
+</body>
+</html>
