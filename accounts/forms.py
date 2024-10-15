@@ -7,7 +7,7 @@ from .models import Project, ProjectOwner, Investor, Analyst
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     class Meta:
-        modal = User
+        model = User
         fields = ("username", "email", "password1", "password2")
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -15,6 +15,26 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user.save()
             return user
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user
+
+
 #Exemple de formulaire personnalise base sur AuthentificationForm
 class custumerAuthenticationForm(AuthenticationForm):
     remember_me = forms.BooleanField(required=False)

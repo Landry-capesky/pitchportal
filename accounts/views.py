@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserLoginForm, ProjectForm, ProjectOwnerForm, InvestorForm, AnalystForm
-from .models import CustomUser, Project, ProjectOwner, Investor, Analyst, FundingProposal
 from django.db.models import Q
-from django.shortcuts import render
-from .models import Project, ProjectOwner, Investor, Analyst, ProjectProgress
+from .models import ProjectOwner, Investor, Analyst, ProjectProgress,CustomUser, Project, FundingProposal
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
 def register_view(request):
     if request.method == 'POST':
@@ -17,9 +17,10 @@ def register_view(request):
             user = form.save()
             login(request, user)
             return redirect('home')
-        else:
-            form = UserRegisterForm()
-        return render(request, 'accounts/register.html', {'form': form})
+    else:
+        form = UserRegisterForm()
+        
+    return render(request, 'accounts/register.html', {'form': form})
 
 
 
@@ -391,8 +392,6 @@ def delete_project_progress(request, progress_id):
 
     return render(request, 'project_progress/delete.html', {'progress': progress})
 
-from django.shortcuts import render
-from .models import Project, FundingProposal
 
 def admin_dashboard(request):
     total_projects = Project.objects.count()
